@@ -35,12 +35,25 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.title %></td>
+        <% if task.done? %>
+          <td>
+            <span style="color: #999; text-decoration: line-through;">
+              <span style="color: black">
+                <%= task.title %>
+              </span>
+            </span>
+          </td>
+          <td><%= "Finished at #{task.done_at.to_s(:db)}" %></td>
+        <% else %>
+          <td><%= task.title %></td>
+          <td><%= link_to 'done!', done_task_path(task), method: :put %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

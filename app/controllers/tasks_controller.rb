@@ -14,6 +14,16 @@ class TasksController < ApplicationController
     end
   end
 
+  def done
+    @task = Task.find(params[:id])
+    if @task.done
+      redirect_to tasks_path, notice: "Task is done!"
+    else
+      @tasks = Task.order(created_at: :desc)
+      render :index
+    end
+  end
+
   private
 
   def task_params
