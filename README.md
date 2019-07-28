@@ -1,24 +1,30 @@
-# README
+# Rails with Docker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Docker 環境で Rails アプリを開発するときの構成について検討するリポジトリ
 
-Things you may want to cover:
+## Requirement
 
-* Ruby version
+* macOS
+* Docker Desktop
 
-* System dependencies
+## Usage
 
-* Configuration
+Rails Server の起動
 
-* Database creation
+```bash
+$ docker-compose up
+```
 
-* Database initialization
+RSpec の実行
+※ `docker-compose up` が起動している前提
 
-* How to run the test suite
+```bash
+$ docker-compose exec bin/rspec
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+System Spec が実行されている様子を見る
+※ パスワードは `secret`
 
-* Deployment instructions
-
-* ...
+```bash
+$ open vnc://localhost:5900
+```
