@@ -1,4 +1,36 @@
 <h1>Tasks#index</h1>
+<div id="js-new-task-form">
+  <new-task-form inline-template>
+    <div>
+      <div>
+        <% if notice %>
+          <%= notice %>
+        <% end %>
+        <% if @task.errors.present? %>
+          <ul>
+            <% @task.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+      <div v-if="showForm">
+        <h2>New Task</h2>
+        <%= form_with model: @task, local: true do |f| %>
+          <%= f.label :title%>
+          <%= f.text_field :title, "v-model" => "title" %>
+          <%= f.submit %>
+        <% end %>
+        <%= button_tag "hide Form", "v-on:click" => "toggleForm" %>
+      </div>
+      <div v-else>
+        <%= button_tag "show Form", "v-on:click" => "toggleForm" %>
+      </div>
+    </div>
+  </new-task-form>
+</div>
+
+<h2>Tasks</h2>
 <table>
   <thead>
     <tr>
@@ -13,3 +45,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= javascript_pack_tag 'new_task_form' %>
