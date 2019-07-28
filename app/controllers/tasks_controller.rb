@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :set_task, only: [:destroy, :done]
   def index
     @task = Task.new
     @tasks = Task.order(created_at: :desc)
@@ -14,8 +15,12 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    @task.destroy!
+    redirect_to tasks_path, notice: "Task is deleted!"
+  end
+
   def done
-    @task = Task.find(params[:id])
     if @task.done
       redirect_to tasks_path, notice: "Task is done!"
     else
@@ -28,5 +33,9 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:title)
+  end
+
+  def set_task
+    @task = Task.find(params[:id])
   end
 end

@@ -36,6 +36,7 @@
     <tr>
       <th>Title</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -54,6 +55,7 @@
           <td><%= task.title %></td>
           <td><%= link_to 'done!', done_task_path(task), method: :put %></td>
         <% end %>
+        <td><%= link_to 'delete', task_path(task), method: :delete, data: {confirm: "Task \"#{task.title}\" will be deleted, OK?" } %></td>
       </tr>
     <% end %>
   </tbody>
