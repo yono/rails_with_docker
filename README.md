@@ -9,6 +9,12 @@ Docker 環境で Rails アプリを開発するときの構成について検討
 
 ## Usage
 
+セットアップ
+
+```bash
+$ docker-compose run --rm app bin/setup
+```
+
 Rails Server の起動
 
 ```bash
