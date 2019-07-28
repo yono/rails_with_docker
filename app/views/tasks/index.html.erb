@@ -34,6 +34,7 @@
 <table>
   <thead>
     <tr>
+      <th>Created At</th>
       <th>Title</th>
       <th></th>
       <th></th>
@@ -42,6 +43,7 @@
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
+        <td><%= task.created_at.to_s(:db) %></td>
         <% if task.done? %>
           <td>
             <span style="color: #999; text-decoration: line-through;">
