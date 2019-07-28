@@ -15,6 +15,8 @@ services:
     command: bin/rails s -p 3000 -b '0.0.0.0'
     ports:
       - "3000:3000"
+    tmpfs:
+      - /app/tmp/pids
     depends_on:
       - db
       - webpack
