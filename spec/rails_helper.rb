@@ -63,6 +63,8 @@ RSpec.configure do |config|
     driven_by :selenium_chrome_in_container
     Capybara.server_host = "0.0.0.0"
     Capybara.server_port = 4000
-    Capybara.app_host = 'http://app:4000'
+    # for CircleCI
+    app_host_url = ENV.fetch('APP_HOST', 'app')
+    Capybara.app_host = "http://#{app_host_url}:4000"
   end
 end
